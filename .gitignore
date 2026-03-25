@@ -1,0 +1,20 @@
+# Node
+node_modules/
+.next/
+.env.local
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+dist/
+*.so
+
+# General
+.DS_Store
+*.log
+.vercel
+.railway

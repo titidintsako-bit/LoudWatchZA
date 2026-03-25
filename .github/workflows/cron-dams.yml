@@ -1,0 +1,14 @@
+name: Refresh Dam Levels
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday 06:00 UTC
+  workflow_dispatch:
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger dam refresh
+        run: |
+          curl -X POST "${{ secrets.BACKEND_URL }}/api/admin/refresh/dams" \
+            -H "Authorization: Bearer ${{ secrets.ADMIN_TOKEN }}" \
+            -H "Content-Type: application/json"

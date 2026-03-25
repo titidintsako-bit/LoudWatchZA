@@ -1,0 +1,13 @@
+name: Refresh Unemployment Data
+on:
+  schedule:
+    - cron: '0 0 15 2,5,8,11 *'  # Quarterly QLFS release months
+  workflow_dispatch:
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger unemployment refresh
+        run: |
+          curl -X POST "${{ secrets.BACKEND_URL }}/api/admin/refresh/unemployment" \
+            -H "Authorization: Bearer ${{ secrets.ADMIN_TOKEN }}"

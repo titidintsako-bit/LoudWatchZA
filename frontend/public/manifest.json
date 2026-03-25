@@ -1,0 +1,55 @@
+{
+  "name": "LoudWatch ZA",
+  "short_name": "LoudWatch",
+  "description": "South Africa Real-Time Intelligence — loadshedding, dam levels, protests, pain index and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080c14",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "categories": ["news", "utilities"],
+  "lang": "en-ZA",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "LoudWatch ZA Desktop Dashboard"
+    },
+    {
+      "src": "/icons/screenshot-narrow.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "LoudWatch ZA Mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Loadshedding Status",
+      "url": "/?mode=overview",
+      "description": "Check current loadshedding stage"
+    },
+    {
+      "name": "Trending in SA",
+      "url": "/?mode=overview&sheet=trending",
+      "description": "What South Africa is talking about"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+name: Refresh AGSA Audits
+on:
+  schedule:
+    - cron: '0 0 1 11 *'  # Nov 1st annually (AGSA release month)
+  workflow_dispatch:
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger audit refresh
+        run: |
+          curl -X POST "${{ secrets.BACKEND_URL }}/api/admin/refresh/audits" \
+            -H "Authorization: Bearer ${{ secrets.ADMIN_TOKEN }}"
