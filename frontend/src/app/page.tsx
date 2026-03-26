@@ -266,7 +266,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Map: row 3, col 2 */}
-        <div style={{ gridColumn: 2, gridRow: 3, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ gridColumn: 2, gridRow: 3, position: 'relative', overflow: 'hidden', height: '100%' }}>
           <MapLibreMap {...mapProps} showMinimal={false} />
           <DeckGLOverlay
             protests={filteredProtests}

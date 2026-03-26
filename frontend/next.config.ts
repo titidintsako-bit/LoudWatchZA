@@ -72,9 +72,12 @@ const nextConfig: NextConfig = {
   },
 }
 
+// disableSourceMapUpload + hideSourceMaps prevent the runAfterProductionCompile hook
+// from crashing the Vercel build when SENTRY_AUTH_TOKEN is not set.
 const sentryConfig = withSentryConfig(nextConfig, {
-  silent: !process.env.SENTRY_AUTH_TOKEN,
-  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN },
+  silent: true,
+  disableSourceMapUpload: true,
+  hideSourceMaps: true,
   telemetry: false,
 })
 
