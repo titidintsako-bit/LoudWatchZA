@@ -132,7 +132,7 @@ export default function DeckGLOverlay({ protests, municipalities, dams, borderPo
       mapRef.current = map
 
       const { MapboxOverlay } = await import('@deck.gl/mapbox')
-      const overlay = new MapboxOverlay({ interleaved: false, layers: [] })
+      const overlay = new MapboxOverlay({ interleaved: true, layers: [] })
       overlayRef.current = overlay
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(map as any).addControl(overlay)

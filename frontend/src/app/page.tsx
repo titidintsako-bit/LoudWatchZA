@@ -221,7 +221,7 @@ export default function DashboardPage() {
         <div className="scanlines" style={{ position: 'fixed', inset: 0, zIndex: 200, pointerEvents: 'none' }} />
         <div style={{ position: 'relative', width: '100vw', height: '100vh', background: '#000', overflow: 'hidden' }}>
           <MapLibreMap {...mapProps} showMinimal />
-          <DeckGLOverlay protests={filteredProtests} municipalities={municipalities} dams={dams} borderPosts={BORDER_POSTS} layerVisible={layers.protests || layers.painIndex || layers.borderMigration} />
+          <DeckGLOverlay protests={filteredProtests} municipalities={municipalities} dams={dams} borderPosts={BORDER_POSTS} layerVisible={layers.borderMigration} />
           <div style={{ position: 'absolute', top: 12, right: 12 }}>
             <LoadsheddingBadge />
           </div>
@@ -243,7 +243,7 @@ export default function DashboardPage() {
       <main style={{
         display: 'grid',
         gridTemplateRows: '36px 26px 1fr 22px',
-        gridTemplateColumns: '180px 1fr 220px',
+        gridTemplateColumns: '180px 1fr 260px',
         width: '100vw',
         height: '100vh',
         overflow: 'hidden',

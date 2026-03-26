@@ -13,7 +13,7 @@ const CHANNELS: { id: ChannelId; label: string; channelId: string; url: string }
 ]
 
 function buildEmbedUrl(channelId: string): string {
-  return `https://www.youtube-nocookie.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=1&controls=1&modestbranding=1&rel=0`
+  return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&enablejsapi=1`
 }
 
 // Corner bracket decoration
@@ -98,7 +98,7 @@ export default function LiveTVPanel() {
       {/* TV screen */}
       <div
         style={{
-          height: 75,
+          height: 185,
           background: '#050608',
           position: 'relative',
           overflow: 'hidden',
@@ -109,20 +109,36 @@ export default function LiveTVPanel() {
         <Corner pos="tl" /><Corner pos="tr" /><Corner pos="bl" /><Corner pos="br" />
 
         {offline ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 8 }}>
             <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 9, color: 'var(--t-muted)' }}>STREAM OFFLINE</span>
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); setOffline(false); setIsPlaying(false); setRetryKey((k) => k + 1) }}
-              style={{
-                background: 'var(--bg-2)', border: '1px solid var(--div-strong)',
-                color: 'var(--t-secondary)', fontFamily: 'IBM Plex Mono, monospace',
-                fontSize: 8, padding: '2px 8px', cursor: 'pointer',
-                display: 'flex', alignItems: 'center', gap: 4,
-              }}
-            >
-              <RefreshCw size={9} /> RETRY
-            </button>
+            <div style={{ display: 'flex', gap: 6 }}>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setOffline(false); setIsPlaying(false); setRetryKey((k) => k + 1) }}
+                style={{
+                  background: 'var(--bg-2)', border: '1px solid var(--div-strong)',
+                  color: 'var(--t-secondary)', fontFamily: 'IBM Plex Mono, monospace',
+                  fontSize: 8, padding: '3px 10px', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: 4,
+                }}
+              >
+                <RefreshCw size={9} /> RETRY
+              </button>
+              <a
+                href={active.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  background: '#ff0000', border: 'none',
+                  color: '#fff', fontFamily: 'IBM Plex Mono, monospace',
+                  fontSize: 8, padding: '3px 10px', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none',
+                }}
+              >
+                ▶ YOUTUBE
+              </a>
+            </div>
           </div>
         ) : isPlaying ? (
           <iframe
@@ -135,12 +151,15 @@ export default function LiveTVPanel() {
             onError={() => setOffline(true)}
           />
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 4 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 8 }}>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,0,0,0.15)', border: '1px solid rgba(255,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: 14, marginLeft: 3 }}>▶</span>
+            </div>
             <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, fontWeight: 500, color: 'var(--t-primary)', letterSpacing: '0.1em' }}>
-              {active.label}
+              {active.label} · LIVE
             </span>
             <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 8, color: 'var(--t-dim)' }}>
-              ► Click to watch live
+              Click to watch
             </span>
           </div>
         )}
